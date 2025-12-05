@@ -1,8 +1,5 @@
-name: "Pianfan's blog"
-description: "翩帆的个人技术博客"
-
-avatar: https://pianfan.github.io/images/avatar.png
-favicon: https://pianfan.github.io/images/favicon.ico
+name: "WqW-hit's blog"
+description: "没id的个人博客"
 
 navigation:
   - name: 首页
@@ -18,26 +15,19 @@ excerpt_separator: <!-- more -->
 
 footer-links:
   zhihu: 
-  email: xiongyunhan@outlook.com
+  email: qiw769755@gmail.com
   facebook:
-  github: pianfan
+  github: WqW-hit
   rss: welcome!
   twitter: 
   youtube:
 
-footer-text: Copyright (c) 2024-2025 Pianfan
+footer-text: Copyright (c) 2024-2025 WqW-hit
 
-url: https://pianfan.github.io
+url: https://WqW-hit.github.io
 
 permalink: /:title/
 paginate_path: /page:num/
-
-# Gitalk
-gitalk:
-  clientID: cba98a0db83eb062c0f8
-  clientSecret: 46400b2614fb5c4189f6c5f662baee088712b316
-  repo: pianfan.github.io
-  owner: pianfan
 
 # The release of Jekyll Now
 version: v1.2.0
