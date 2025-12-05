@@ -1,6 +1,8 @@
 name: "WqW-hit's blog"
 description: "没id的个人博客"
 
+avatar：https://WqW-hit.github.io/images/avatar.jpg
+
 navigation:
   - name: 首页
     url: /
@@ -10,8 +12,6 @@ navigation:
     url: /tags
 
 paginate: 8
-
-avatar：https://WqW-hit.github.io/images/avatar.jpg
 
 excerpt_separator: <!-- more -->
 
