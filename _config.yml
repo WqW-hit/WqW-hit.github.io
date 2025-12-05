@@ -1,7 +1,8 @@
 name: "WqW-hit's blog"
 description: "没id的个人博客"
 
-avatar：https://WqW-hit.github.io/images/avatar.jpg
+avatar: https://WqW-hit.github.io/images/avatar.jpg
+favicon: 
 
 navigation:
   - name: 首页
