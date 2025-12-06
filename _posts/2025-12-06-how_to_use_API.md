@@ -1,11 +1,11 @@
-```yaml
+---
 layout: post
 title: "使用API进行LLM-as-a-judge及API相关指令（以Gemini为例）"
 date: 2025-12-06
 tags: [科研日记]
 toc: true
 author: WqW-hit
-```
+---
 
 今天这份博客主要以Google为例介绍如何使用API完成推理以及一些常见的API操作指令，让你对API内部的一些信息有更好的认识。
 
@@ -403,6 +403,7 @@ curl "https://generativelanguage.googleapis.com/v1beta/models?key=$API_KEY"
 6. 我在代码中加入了一个检查API KEY的逻辑。因为在我先前的代码中，虽然设置了API_KEY轮岗制度，但是却忽视了**API的权限隔离**问题。在上面我们提到了“上传→处理→生成”的三步走流程，在实际运行中，出现了“API 1成功上传了视频但是在推理过程中出现意外中断”的情况。在这种背景下，当我们直接替换为API 2处理问题时它没有执行上传那一步，而是直接从生成开始，所以遇到了`Error with API Key 2: 403 You do not have permission to access the File b1scxw08yc45 or it may not exist.`的问题，API Key无权访问Google服务器上的文件ID，因为它是由API Key 1上传的，文件私有，只有上传该文件的账号才有权限读取它。
 
 7. 在代码的最后有一个time.sleep(10)逻辑，这是为了防止API访问速率过于频繁导致API被ban
+
 
 
 
