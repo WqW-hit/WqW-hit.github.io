@@ -28,18 +28,25 @@ author: WqW-hit
 此后打开你的cmd（命令提示行），在页面内输入
 
 ```bash
-ssh -R 127.0.0.1:<virtual_port>:127.0.0.1:<virtual_port> <username>@<address> -p <port>
+ssh -p <port> <username>@<server_ip> "fuser -k <local_port>/tcp 2>/dev/null" & ssh -o ServerAliveInterval=30 -o ServerAliveCountMax=3 -o ExitOnForwardFailure=yes -R 127.0.0.1:<local_port>:127.0.0.1:<local_port> <username>@<server_ip> -p <port>
 ```
 
-对这行指令做一些解释：
+这行指令包含两个通过与符号连接的 SSH 命令，用于在后台杀掉远程端口占用并建立反向隧道连接。
 
-1. virtual_port的含义为你本地的魔法工具（如clash）中设置的端口，比如说7900/7897等，要根据你的设置做一些处理
-2. 后续的port的含义是你的账户连接服务器的端口，一般来说默认端口为22
+首先在后台通过ssh连接到指定用户的指定服务器&指定端口，然后再远程服务器执行命令强制终止占用 TCP 端口的进程，确保每次连接都能够是“全新连接”。随后建立反向ssh隧道连接同一服务器，每 30 秒发送一次保活包，连续 3 次无响应后断开连接端口，转发失败时立即退出。这样“复杂”的参数设置目的在于时刻发送保活包，防止某些服务器较为严苛的安全设定（例如一段时间没有通信直接强制中断连接）。
+
+<server_ip>：服务器 IP
+<username>：SSH 用户名
+<port>：SSH 服务端口
+<local_port>：本地/远程转发端口
+
+
+
 
 在输入这一行指令并且输入账户密码之后，在你的clash或者其他类似软件中找到“复制环境变量类型”，在确保环境变量类型为bash的前提下可以复制得到类似下面的指令
 
 ```bash
-export https_proxy=http://127.0.0.1:<virtual_port>http_proxy=http://127.0.0.1:<virtual_port> all_proxy=socks5://127.0.0.1:<virtual_port>
+export https_proxy=http://127.0.0.1:<local_port> http_proxy=http://127.0.0.1:<local_port> all_proxy=socks5://127.0.0.1:<local_port>
 ```
 
 再将上面的指令复制到终端之后理论上配置就已经完成了，可以运行下面的指令进行尝试
@@ -65,4 +72,7 @@ index.html                        [  <=>                                        
 ```
 
 如果你能够得到类似上面的输出就说明已经成功的连接了，接下来直接处理就好了
+
+特别需要注意以下几点：1.在cmd终端输入上面四行指令后不要关闭cmd终端。2.在cmd终端输入后还要在远程服务器的终端上输入export环境变量即最终完成配置。
+
 
