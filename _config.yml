@@ -62,3 +62,13 @@ exclude:
   - LICENSE
   - README.md
 
+# Gitalk Comments
+gitalk:
+  enable: true
+  clientID: 'Ov23liPg8WtrkrR2ZCZk'         # 第一步获取的 Client ID
+  clientSecret: '690d69c85b435fe1233c968ec2d494971aec9c8b' # 第一步获取的 Client Secret
+  repo: 'WqW-hit.github.io'       # 你的博客仓库名
+  owner: 'WqW-hit'                # 你的 GitHub 用户名
+  admin: ['WqW-hit']              # 拥有初始化权限的用户名
+  distractionFreeMode: false      # 是否启用类似 Facebook 的无干扰模式
+
